@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>AirBNB</title>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js">
+	
+</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.5/angular-nvd3.min.js"></script>
+
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js">
+	
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet" type="text/css">
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<link rel='stylesheet' href='/stylesheets/style.css'>
+<!-- <link rel='stylesheet' href='/stylesheets/main.css'> -->
+<link rel='stylesheet' href='/stylesheets/homepage.css'>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link
+	href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900|Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	
+</script>
+
+<script src="angularjs/admin.js"></script>
+
+
+</head>
+
+
+<body ng-app="airbnb_admin" ng-controller="airbnb_admin_land" id="myPage" data-spy="scroll"
+	data-target=".navbar" data-offset="60">
+
+	<nav class="navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<img src="/images/logo.png" alt="Paris" width="50" height="50">
+				<a class="navbar-brand" href="#myPage">AIRBNB</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#login">ADMIN LOGIN</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid text-center">
+		<h2>Airbnb, Inc. (ADMIN PANEL)</h2>
+		<p>A Travel and Accomodation Marketplace!</p>
+	</div>
+
+	<!-- Container (Services Section) -->
+	<div id="services" class="container-fluid text-center">
+		<h2>SERVICES</h2>
+		<h4>THIS IS ADMIN PANEL</h4>
+		<br>
+		<div class="row slideanim">
+			<div class="col-sm-12">
+				<a href="#login"><span
+					class="glyphicon glyphicon-off logo-small"></span></a>
+				<h4>ADMIN LOGIN</h4>
+				<p>Login to access our system..</p>
+			</div>
+
+		</div>
+		<br> <br>
+		<div id="main">
+
+			<div ng-view></div>
+
+		</div>
+	</div>
+
+	<footer class="container-fluid text-center">
+		<a href="#myPage" title="To Top"> <span
+			class="glyphicon glyphicon-chevron-up"></span>
+		</a>
+	</footer>
+	
+		<script src="js/ifvisible.js"></script>
+		<script src="js/timeme.js"></script>
+		<script type="text/javascript">
+    		TimeMe.setIdleDurationInSeconds(30);
+    		TimeMe.setCurrentPageName("my-home-page");
+    		TimeMe.initialize();        
+		</script>
+		
+<script>
+var timeSpentOnPage;
+var app = angular.module('airbnb_admin');
+//login
+app.controller('airbnb_admin_land', function($scope, $http) {
+
+	console.log("I AM INSIDE airbnb_admin_land CONTROLLER ON PAGE: airbnb_admin");
+	$scope.invalid_login = true;
+	var clicks_on_this_page = 0;
+	$(document).click(function(event) {
+		var target = event.target || event.srcElement;
+		var id = target.id;
+		clicks_on_this_page = clicks_on_this_page + 1;
+		if(id == ""){
+			id = "empty";
+		}
+		
+		var text = $(event.target).text();
+	    var clicklog = id;
+
+	    timeSpentOnPage = TimeMe.getTimeOnCurrentPageInSeconds();
+		var page_analytics = {
+				"clicklog" : clicklog,
+				"timeSpentOnPage" : timeSpentOnPage,
+				"page_id" : "airbnb_admin",
+				"clicks_on_this_page" : clicks_on_this_page
+		};
+		
+		console.log(page_analytics);
+		
+		$http({
+			method : "POST",
+			url : '/logMyEvent',
+			data : page_analytics
+		}).success(function(data) {
+
+			if (data.statusCode === 200) {
+				console.log("MY EVENT HAS BEEN LOGGED ON: airbnb_admin");
+				// console.log(data);
+			} else {
+				console.log("SOMETHING WENT WRONG");
+			}
+		});
+	});
+
+});
+
+
+
+
+$(window).unload(function() {
+	
+	  console.log("bye bye");
+	  timeSpentOnPage += TimeMe.getTimeOnCurrentPageInSeconds();
+	  console.log(timeSpentOnPage);
+});
+
+
+window.onload = function(e) {
+    console.log("hi hi");
+};
+</script>
+
+	<script>
+		$(document).ready(
+				function() {
+					// Add smooth scrolling to all links in navbar + footer link
+					$(".navbar a, footer a[href='#myPage']").on('click',
+							function(event) {
+
+								// Prevent default anchor click behavior
+								event.preventDefault();
+
+								// Store hash
+								var hash = this.hash;
+
+								// Using jQuery's animate() method to add smooth page scroll
+								// The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+								$('html, body').animate({
+									scrollTop : $(hash).offset().top
+								}, 900, function() {
+
+									// Add hash (#) to URL when done scrolling (default click behavior)
+									window.location.hash = hash;
+								});
+							});
+
+					// Slide in elements on scroll
+					$(window).scroll(function() {
+						$(".slideanim").each(function() {
+							var pos = $(this).offset().top;
+
+							var winTop = $(window).scrollTop();
+							if (pos < winTop + 600) {
+								$(this).addClass("slide");
+							}
+						});
+					});
+				})
+	</script>
+</body>
+</html>

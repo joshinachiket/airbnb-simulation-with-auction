@@ -1,0 +1,27 @@
+<div>
+
+	<div class="table table-title">
+		<h2>PROFILE INFORMATION IN AREA </h2>{{city}}
+	</div>
+	<table class="table table-fill">
+		<tr>
+			<th>USER FIRST NAME</th>
+			<th>USER LAST NAME</th>
+			<th>USERNAME</th>
+			<th>CITY</th>
+			<th>STATE</th>
+			<th>ZIP CODE</th>
+			<th>HOST FLAG STATUS</th>
+		</tr>
+		<tr ng-repeat="user in results">
+			<td>{{user.fname}}</td>
+			<td>{{user.lname}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.city}}</td>
+			<td>{{user.state}}</td>
+			<td>{{user.zip_code}}</td>
+			<td>{{user.approve_flag}}</td>
+		</tr>
+	</table>
+
+</div>

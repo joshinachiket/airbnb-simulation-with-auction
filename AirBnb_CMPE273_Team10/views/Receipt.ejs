@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--  <link rel='stylesheet' href='/stylesheets/Profile.css' />-->
+
+    <!-- Loading the AngularJS file from /public/angularJS folder -->
+
+
+    <script src="angularjs/receipt.js">  </script>
+
+</head>
+
+
+<body class="ng-scope" ng-app="receipt" ng-controller="RECEIPT">
+
+<div class="container">
+    <div class="row">
+        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <H2>Customer Receipt</H2>
+                        <br>
+                        Confirmation code:
+                        <br>
+                        <p id="demo"></p>
+                        <br>
+
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>AIRBNB</em>
+                        <em>+1 (415)800-5959</em>
+                    </p>
+                    <p>
+                        <em>WWW.AIRBNB.COM/CONTACT</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-hover" style="align-content: flex-start">
+                    <col width="20">
+                    <col width="500">
+                    <col width="20">
+                    <col width="500">
+
+                    <tr>
+                        <th class="text-left"></th>
+                        <th class="text-left"></th>
+                        <th class="text-left"></th>
+                        <th class="text-left"></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><i class="glyphicon glyphicon-user"></i></td>
+                        <td style="text-align: left">{{custName}}</td>
+                        <td style="text-align: left"><span class="glyphicon glyphicon-map-marker"></span></td>
+                        <td style="text-align: left">{{city}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td ><i class="material-icons"></i></td>
+                        <td style="text-align: left">{{address}}</td>
+                        <td style="text-align: left"><span class="glyphicon glyphicon-home"></span></td>
+                        <td style="text-align: left">{{property_name}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td ><i class="material-icons"></i></td>
+                        <td  style="text-align: left">{{room_type}}</td>
+                        <td  style="text-align: left"><!--<i class="material-icons">group</i>--></td>
+                        <td  style="text-align: left">{{number_of_guests}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td ><span class="glyphicon glyphicon-calendar"></span></td>
+                        <td style="text-align: left">{{dateFrom}}</td>
+                        <td style="text-align: left"><span class="glyphicon glyphicon-calendar"></span></td>
+                        <td style="text-align: left">{{dateTo}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td ><i class="glyphicon glyphicon-lamp"></i></td>
+                        <td style="text-align: left">{{stayDuration}}</td>
+                        <td style="text-align: left"><i class="glyphicon glyphicon-usd"></i></td>
+                        <td style="text-align: left">{{securityDeposit}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>Payment Details</strong>
+                        <br>
+                    </address>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th> </th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-9"><h4><em>ACCOMODATIONS</em></h4></td>
+                            <td class="col-md-1" style="text-align: center">  </td>
+                            <td class="col-md-1 text-center"></td>
+                            <td class="col-md-1 text-center">{{total_cost}}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9"><h4><em>AIRBNB SERVICE FEE</em></h4></td>
+                            <td class="col-md-1" style="text-align: center">  </td>
+                            <td class="col-md-1 text-center"></td>
+                            <td class="col-md-1 text-center">$300</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9"><h4><em>AIRBNB CONCIERGE</em></h4></td>
+                            <td class="col-md-1" style="text-align: center">  </td>
+                            <td class="col-md-1 text-center"></td>
+                            <td class="col-md-1 text-center">FREE</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9"><h4><em></em></h4></td>
+                            <td class="col-md-1" style="text-align: center">  </td>
+                            <td class="col-md-1 text-center">TOTAL</td>
+                            <td class="col-md-1 text-center">{{total_fees}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div >
+                    <input type="button" class="btn btn-success btn-lg btn-block" ng-click="Confirm()" value="CONFIRM"/>
+                    <ul class="nav navbar-nav navbar-right">
+                       <!-- <li><a href="/become_a_host">Become a host</a></li>
+                        <li><a href="#help" >Help</a></li>
+                        <li><a href="#myModal2" role="button" data-toggle="modal">Sign Up</a></li>-->
+                        <!--<li><a href="#myModal" role="button" data-toggle="modal">Confirm Receipt</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" >
+        <div class="modal-content" style="width:500px">
+            <div>
+                <div class="modal-header">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Payment Details
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="cardNumber">
+                                    CARD NUMBER</label>
+                                <div class="input-group">
+                                    <input type="text" name="password" class="form-control" ng-model="CardNo" minlength="16" maxlength="16" required placeholder="Valid Card Number"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-md-5 pull-left">
+                                    <div class="form-group">
+                                        <label for="expityMonth">
+                                            EXPIRY DATE
+                                        </label>
+                                        <div class="col-xs-6 col-lg-6 pl-ziro">
+                                            <input type="text" name="password" ng-model="Month" required class="form-control" placeholder="Month"/>
+                                        </div>
+                                        <div class="col-xs-6 col-lg-6 pl-ziro">
+                                            <input type="text" name="password" ng-model="Year" required class="form-control" placeholder="Year"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-5 col-md-5 pull-right">
+                                    <div class="form-group">
+                                        <label for="cvCode">
+                                            CV CODE
+                                        </label>
+                                        <input type="text" name="password" ng-model="CCV" maxlength="3" minlength="3" required class="form-control" placeholder="CCV"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+                <input type="submit" class="btn btn-success btn-lg btn-block" ng-click="checkout(a);" value = "Checkout"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    document.getElementById("demo").innerHTML = new Date();
+</script>
+</body>
+
+</html>
